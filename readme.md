@@ -15,8 +15,9 @@
 
 | Name              | Student ID     | Contribution |
 |-------------------|----------------|----------------|
-| Mohammed Darwish   |  201952590          | Phases 2, 3 |
-| Hayder Aleissa   | 202020460           | Phases 1, 3 |
+| Hayder Aleissa   | 202020460           | Phase 1 |
+| Mohammed Darwish   |  201952590          | Phase 2 |
+| Faisal Alhamdi   | 202173830           | Phase 3 |
 
 ---
 
@@ -55,12 +56,12 @@ The project is divided into **three major phases**:
 
 ## Deliverables
 
-- ✅ Environment setup walkthrough and configuration
-- ✅ Successful exploitation using Metasploit
-- ✅ Custom attack script with proof-of-concept
-- ✅ SIEM dashboard with full log visualization
-- ✅ Proposed and implemented security defense
-- ✅ Before and After security comparisons
+- Environment setup walkthrough and configuration
+- Successful exploitation using Metasploit
+- Custom attack script with proof-of-concept
+- SIEM dashboard with full log visualization
+- Proposed and implemented security defense
+- Before and After security comparisons
 
 ---
 
@@ -70,6 +71,7 @@ graph TD;
     A[ICS344-Project] --> B[README.md 📝 Main documentation]
     A --> C[phase-1/ 🔥 Attack & Exploitation]
     C --> C1[README.md]
+    C --> C2[exploit.py]
 
     
     A --> D[phase-2/ 📊 SIEM & Log Analysis]
