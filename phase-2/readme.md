@@ -97,7 +97,7 @@ In the victim machine:
 
 ![Image](https://github.com/user-attachments/assets/cd1614c9-38aa-4427-88d3-5479e2473820) 
 
-![IMAGE: Screenshot of Splunk forwarder configuration on victim machine (phase2_pics/Install_Forwarder_pkg_victim.png)
+![IMAGE: Screenshot of Splunk forwarder configuration on victim machine](phase2_pics/Install_Forwarder_pkg_victim.png)
 
 ## Step 3: Configure Splunk Forwarder
 
