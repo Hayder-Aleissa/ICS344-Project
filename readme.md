@@ -72,6 +72,7 @@ graph TD;
     A --> C[phase-1/ 🔥 Attack & Exploitation]
     C --> C1[README.md]
     C --> C2[exploit.py]
+    C --> C3[phase1_pics]
 
     
     A --> D[phase-2/ 📊 SIEM & Log Analysis]
