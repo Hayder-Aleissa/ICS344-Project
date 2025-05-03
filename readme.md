@@ -76,6 +76,7 @@ graph TD;
     
     A --> D[phase-2/ 📊 SIEM & Log Analysis]
     D --> D1[README.md]
+    D --> D2[phase2_pics]
 
 
     A --> E[phase-3/ 🛡️ Security Patches & Validation]
