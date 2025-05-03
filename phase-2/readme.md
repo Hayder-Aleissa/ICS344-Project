@@ -56,7 +56,7 @@ This section covers installing the Splunk Universal Forwarder, which acts as an 
 
 First:
 
-- Go Settings → Forwarding and receiving → Receive data → Configure receiving (if 9997 is not there add it).
+- Go Settings -> Forwarding and receiving -> Receive data -> Configure receiving (if 9997 is not there add it).
 - Set Port to 9997 and Save.
 
 ![IMAGE: Screenshot of Splunk receiving configuration with port 9997](phase2_pics/Receive_data_port.png)
@@ -215,7 +215,7 @@ In the data summary you should see something like this:
 
 Additionally:
 
-Later on to do further analysis I added proftp logs to monitor the FTP connections. It turned out that only checks my machine and not the victim machine.
+Later on to do further analysis I added ProFTPD logs to monitor the FTP connections. It turned out that only checks my machine and not the victim machine.
 
 I added it manually on splunkforwarder input.conf file:
 
@@ -245,7 +245,7 @@ Before going to the next step an honorable mention:
 
 I did not know that we should add Splunkforwarder to the victim VM. So I did the following:
 
-- Go Settings → Data → add a TCP port
+- Go Settings -> Data -> add a TCP port
 - Set Port to 1814 and Save.
 
 This will enable splunk to listen to any data made by TCP connection on this port.
@@ -365,3 +365,32 @@ Pattern Log for the victim machine.
 Attacker Pattern log:
 
 ![IMAGE: Screenshot of attacker pattern log](phase2_pics/attack__log.png)
+
+### From Victim Machine Logs
+The logs show:
+
+DHCPREQUEST patterns: The victim IP address changes during attack execution, indicating network configuration changes likely triggered by the reverse shell connection
+FTP session events: Multiple FTP session open/close events with the attacker IP (10.0.2.5)
+System resource spikes: Inferred from the timing of log events showing increased activity
+
+The mod_copy commands executed on the FTP server would appear in the victim's logs as:
+```bash
+SITE CPFR /tmp/rev.php
+SITE CPTO /var/www/html/rev.php
+```
+### From Attacker Machine Logs
+Root sessions were opened and closed in order to apply the attack
+The enhanced logging functionality added to the exploit shows:
+
+Sequential attack phases: "ATTACK STARTED" -> "PAYLOAD DELIVERED" -> "SHELL TRIGGERED" -> "ATTACK COMPLETE"
+Connection establishment: Authentication logs showing successful connection back to the attacker's netcat listener
+Command execution confirmation: The "returns the same value as a log from the attacker machine" indicates successful command execution in the reverse shell
+
+### Log Timeline Correlation
+When comparing both environments:
+
+Attacker initiates FTP connection -> Victim logs show FTP session open
+Attacker executes mod_copy commands -> Victim shows file operations
+Attacker triggers web-based payload -> Victim shows HTTP request to PHP file
+Reverse shell connects back -> Attacker shows incoming connection on port 4444
+DHCPREQUEST appears in victim logs -> Network configuration changes due to shell activity
