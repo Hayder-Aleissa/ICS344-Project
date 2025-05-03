@@ -4,12 +4,12 @@ This phase focused on preparing the environment and compromising a vulnerable se
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 This guide is created **strictly for educational purposes** within the scope of the KFUPM ICS344 course. Attempting to compromise systems without proper authorization is illegal and unethical.
 
 ---
 
-## 📋 Objectives
+## Objectives
 
 - Set up Metasploitable3 (Victim) and Kali Linux (Attacker)
 - Verify connectivity and identify open ports/services
@@ -19,7 +19,7 @@ This guide is created **strictly for educational purposes** within the scope of 
 
 ---
 
-## 🖥️ Victim Environment: Metasploitable3
+## Victim Environment: Metasploitable3
 
 ### Setup Steps
 
@@ -33,14 +33,14 @@ This guide is created **strictly for educational purposes** within the scope of 
 
 ---
 
-## 💻 Attacker Environment: Kali Linux
+## Attacker Environment: Kali Linux
 
 ### Initial Setup & Updates  
 `sudo apt update && sudo apt upgrade -y`
 
 ---
 
-## 🌐 Ensuring Connectivity Between VMs
+## Ensuring Connectivity Between VMs
 
 ### Get victim machine IP:  
 Run inside Metasploitable3: `ipconfig`
@@ -55,7 +55,7 @@ Run inside Kali: `ip a`
 
 ---
 
-## 🔍 Port Scanning with Nmap  
+## Port Scanning with Nmap  
 `nmap -sV 192.168.56.101`
 
 Sample Output Snippet:
@@ -65,13 +65,13 @@ Sample Output Snippet:
 
 ---
 
-## 🎯 Selected Service: ftp (port 21)
+## Selected Service: ftp (port 21)
 
 Due to its history of vulnerabilities and real-world relevance , we selected **ftp** for this attack phase.
 
 ---
 
-## 🛠️ Exploitation using Metasploit
+## Exploitation using Metasploit
 
 ### Launch Metasploit Console:  
 `sudo msfconsole`
@@ -122,11 +122,11 @@ Due to its history of vulnerabilities and real-world relevance , we selected **f
 ![image](https://github.com/user-attachments/assets/2a63233c-c97f-4522-9169-aec7a06f986b)
 
 
-✅ If successful, a Meterpreter session is opened, providing full access.
+ If successful, a Meterpreter session is opened, providing full access.
 
 ---
 
-## 🧪 Custom Exploitation Script
+## Custom Exploitation Script
 
 We wrote a **Python script** to automate the attack for demonstration.
 
@@ -143,27 +143,27 @@ We wrote a **Python script** to automate the attack for demonstration.
 
 
 
-## 💡 Challenges Faced
+## Challenges Faced
 
 - Issues with Metasploitable3 provisioning on some hardware
 - Initial network misconfiguration between VMs
 - Failing to open sessions after using the `run` command
 ---
 
-## 📘 Summary
+## Summary
 
 | Task                        | Status       |
 |-----------------------------|--------------|
-| Metasploitable3 setup       | ✅ Done      |
-| Kali Linux setup            | ✅ Done      |
-| Service enumeration (Nmap)  | ✅ Done      |
-| Metasploit attack           | ✅ Success   |
-| Custom script creation      | ✅ Tested    |
-| Screenshots and documentation | ✅ Attached |
+| Metasploitable3 setup       |  Done      |
+| Kali Linux setup            |  Done      |
+| Service enumeration (Nmap)  |  Done      |
+| Metasploit attack           |  Success   |
+| Custom script creation      |  Tested    |
+| Screenshots and documentation | Attached |
 
 ---
 
-## 📚 References
+## References
 
 - [Metasploit Framework](https://www.metasploit.com/)
 - [Rapid7 Guide on Metasploitable3](https://github.com/rapid7/metasploitable3)
